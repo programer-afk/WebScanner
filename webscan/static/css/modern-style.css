@@ -1,0 +1,481 @@
+/* Modern Style CSS for WebScanner Project */
+
+:root {
+    /* 主题色彩 */
+    --primary-color: #4158D0;
+    --primary-light: #C6CBFA;
+    --primary-dark: #2A3990;
+    --secondary-color: #C850C0;
+    --accent-color: #FFCC70;
+    --success-color: #2EC4B6;
+    --info-color: #38B6FF;
+    --warning-color: #FFBE0B;
+    --danger-color: #FF5C8D;
+    
+    /* 灰度 */
+    --gray-100: #f8f9fa;
+    --gray-200: #e9ecef;
+    --gray-300: #dee2e6;
+    --gray-400: #ced4da;
+    --gray-500: #adb5bd;
+    --gray-600: #6c757d;
+    --gray-700: #495057;
+    --gray-800: #343a40;
+    --gray-900: #212529;
+    
+    /* 阴影 */
+    --shadow-sm: 0 .125rem .25rem rgba(0,0,0,.075);
+    --shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+    --shadow-lg: 0 1rem 3rem rgba(0,0,0,.175);
+    
+    /* 圆角 */
+    --border-radius-sm: 0.25rem;
+    --border-radius: 0.5rem;
+    --border-radius-lg: 1rem;
+    --border-radius-xl: 1.5rem;
+    
+    /* 过渡 */
+    --transition: all 0.3s ease;
+    
+    /* 字体 */
+    --font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+}
+
+/* 基础样式 */
+body {
+    font-family: var(--font-family);
+    background-color: var(--gray-100);
+    color: var(--gray-800);
+}
+
+/* 卡片样式 */
+.modern-card {
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    border: none;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+}
+
+.modern-card:hover {
+    box-shadow: var(--shadow);
+    transform: translateY(-5px);
+}
+
+.modern-card-header {
+    background-color: transparent;
+    border-bottom: 1px solid var(--gray-200);
+    padding: 1rem 1.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+.modern-card-header .card-icon {
+    margin-right: 0.75rem;
+    color: var(--primary-color);
+    font-size: 1.25rem;
+}
+
+.modern-card-body {
+    padding: 1.5rem;
+}
+
+/* 按钮样式 */
+.modern-btn {
+    border-radius: var(--border-radius);
+    padding: 0.5rem 1.25rem;
+    font-weight: 500;
+    transition: var(--transition);
+    border: none;
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+}
+
+.modern-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.modern-btn-primary {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: white;
+}
+
+.modern-btn-secondary {
+    background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+    color: white;
+}
+
+.modern-btn-success {
+    background: linear-gradient(45deg, var(--success-color), var(--info-color));
+    color: white;
+}
+
+.modern-btn-danger {
+    background: linear-gradient(45deg, var(--danger-color), var(--warning-color));
+    color: white;
+}
+
+.modern-btn-outline {
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.modern-btn-outline:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* 输入框样式 */
+.modern-input {
+    border-radius: var(--border-radius);
+    border: 1px solid var(--gray-300);
+    padding: 0.625rem 1rem;
+    transition: var(--transition);
+    width: 100%;
+}
+
+.modern-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(65, 88, 208, 0.25);
+    outline: none;
+}
+
+/* 标签样式 */
+.modern-badge {
+    padding: 0.35em 0.65em;
+    font-size: 0.75em;
+    font-weight: 600;
+    border-radius: var(--border-radius-sm);
+    display: inline-block;
+}
+
+.modern-badge-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.modern-badge-secondary {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.modern-badge-success {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.modern-badge-info {
+    background-color: var(--info-color);
+    color: white;
+}
+
+.modern-badge-warning {
+    background-color: var(--warning-color);
+    color: var(--gray-800);
+}
+
+.modern-badge-danger {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+/* 导航样式 */
+.modern-nav {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+}
+
+.modern-nav-item {
+    padding: 1rem 1.5rem;
+    color: var(--gray-700);
+    border-left: 3px solid transparent;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.modern-nav-item:hover {
+    background-color: var(--gray-100);
+    color: var(--primary-color);
+    border-left-color: var(--primary-color);
+}
+
+.modern-nav-item.active {
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
+    border-left-color: var(--primary-dark);
+    font-weight: 600;
+}
+
+.modern-nav-icon {
+    margin-right: 0.75rem;
+    font-size: 1.25rem;
+}
+
+/* 表格样式 */
+.modern-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 1rem;
+}
+
+.modern-table th,
+.modern-table td {
+    padding: 0.75rem;
+    vertical-align: middle;
+    border-top: 1px solid var(--gray-200);
+}
+
+.modern-table thead th {
+    background-color: var(--gray-100);
+    border-bottom: 2px solid var(--gray-300);
+    font-weight: 600;
+    color: var(--gray-700);
+}
+
+.modern-table tbody tr:hover {
+    background-color: var(--gray-100);
+}
+
+/* 进度条样式 */
+.modern-progress {
+    height: 0.75rem;
+    background-color: var(--gray-200);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.modern-progress-bar {
+    height: 100%;
+    border-radius: var(--border-radius-lg);
+    transition: var(--transition);
+}
+
+.modern-progress-primary {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+}
+
+.modern-progress-success {
+    background: linear-gradient(45deg, var(--success-color), var(--info-color));
+}
+
+.modern-progress-warning {
+    background: linear-gradient(45deg, var(--warning-color), var(--accent-color));
+}
+
+.modern-progress-danger {
+    background: linear-gradient(45deg, var(--danger-color), var(--warning-color));
+}
+
+/* 警告框样式 */
+.modern-alert {
+    padding: 1rem 1.5rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+    position: relative;
+    border-left: 4px solid transparent;
+}
+
+.modern-alert-primary {
+    background-color: rgba(65, 88, 208, 0.1);
+    border-left-color: var(--primary-color);
+    color: var(--primary-dark);
+}
+
+.modern-alert-success {
+    background-color: rgba(46, 196, 182, 0.1);
+    border-left-color: var(--success-color);
+    color: var(--success-color);
+}
+
+.modern-alert-warning {
+    background-color: rgba(255, 190, 11, 0.1);
+    border-left-color: var(--warning-color);
+    color: var(--warning-color);
+}
+
+.modern-alert-danger {
+    background-color: rgba(255, 92, 141, 0.1);
+    border-left-color: var(--danger-color);
+    color: var(--danger-color);
+}
+
+/* 图标样式 */
+.modern-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 0.75rem;
+    font-size: 1.25rem;
+}
+
+.modern-icon-primary {
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
+}
+
+.modern-icon-secondary {
+    background-color: rgba(200, 80, 192, 0.2);
+    color: var(--secondary-color);
+}
+
+.modern-icon-success {
+    background-color: rgba(46, 196, 182, 0.2);
+    color: var(--success-color);
+}
+
+.modern-icon-info {
+    background-color: rgba(56, 182, 255, 0.2);
+    color: var(--info-color);
+}
+
+.modern-icon-warning {
+    background-color: rgba(255, 190, 11, 0.2);
+    color: var(--warning-color);
+}
+
+.modern-icon-danger {
+    background-color: rgba(255, 92, 141, 0.2);
+    color: var(--danger-color);
+}
+
+/* 页面标题 */
+.modern-page-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--gray-800);
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.modern-page-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 50px;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    border-radius: var(--border-radius-lg);
+}
+
+/* 统计卡片 */
+.modern-stats-card {
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.modern-stats-card:hover {
+    box-shadow: var(--shadow);
+    transform: translateY(-5px);
+}
+
+.modern-stats-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+}
+
+.modern-stats-info {
+    flex: 1;
+}
+
+.modern-stats-value {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.modern-stats-label {
+    color: var(--gray-600);
+    font-size: 0.875rem;
+}
+
+/* 工具提示 */
+.modern-tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.modern-tooltip .modern-tooltip-text {
+    visibility: hidden;
+    width: auto;
+    min-width: 120px;
+    background-color: var(--gray-800);
+    color: white;
+    text-align: center;
+    border-radius: var(--border-radius-sm);
+    padding: 0.5rem 0.75rem;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.875rem;
+}
+
+.modern-tooltip .modern-tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--gray-800) transparent transparent transparent;
+}
+
+.modern-tooltip:hover .modern-tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .modern-stats-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .modern-stats-icon {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+    
+    .modern-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .modern-card-header .card-icon {
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+    }
+} 

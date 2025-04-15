@@ -1,0 +1,469 @@
+{#@Time:2023/01/01#}
+{#@Author:Liu Wen (programer-afk)#}
+{#@File：navigation.html#}
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'plugins/navigation/css/xenon-core.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/navigation/css/xenon-components.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/navigation/css/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/modern-style.css' %}">
+    <style>
+        /* 基础样式 */
+        :root {
+            --primary-color: #4158D0;
+            --secondary-color: #C850C0;
+            --accent-color: #FFCC70;
+            --text-color: #333;
+            --light-text: #fff;
+            --border-radius: 15px;
+            --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            --hover-transform: translateY(-5px);
+        }
+        
+        /* 粒子效果 */
+        #particles-js {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            z-index: -1;
+        }
+        
+        /* 左侧导航栏点击后变为蓝色*/
+        .sidebar-menu .main-menu li.active>a {
+            color: var(--primary-color);
+        }
+        
+        /* 卡片悬停效果 */
+        .xe-widget.xe-conversations {
+            transition: all 0.3s ease;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+        
+        .xe-widget.xe-conversations:hover {
+            transform: var(--hover-transform);
+            box-shadow: var(--card-shadow);
+        }
+        
+        /* 统计图表容器 */
+        .chart-container {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .chart-container:hover {
+            box-shadow: var(--card-shadow);
+        }
+        
+        /* 分类标题美化 */
+        .category-title {
+            padding: 15px 0;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+            font-weight: 600;
+            color: #333;
+            position: relative;
+        }
+        
+        .category-title i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+        
+        /* 数据统计标题 */
+        .stats-title {
+            text-align: center;
+            font-size: 20px;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #f3f5f9, #ffffff);
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        /* 作者卡片样式 */
+        .author-card {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            background: linear-gradient(45deg, #f8f9fa, #ffffff);
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+            border: none;
+        }
+        
+        .author-card:hover {
+            transform: var(--hover-transform);
+            box-shadow: var(--card-shadow);
+        }
+        
+        .author-info {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .author-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 20px;
+            border: 3px solid var(--primary-color);
+        }
+        
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-details h3 {
+            margin: 0 0 10px;
+            color: var(--primary-color);
+        }
+        
+        .author-details p {
+            margin: 0;
+            color: #6c757d;
+        }
+        
+        .author-links {
+            margin-top: 10px;
+        }
+        
+        .author-links a {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 15px;
+            color: #6c757d;
+            transition: all 0.3s ease;
+        }
+        
+        .author-links a:hover {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .author-links i {
+            margin-right: 5px;
+        }
+        
+        /* 媒体查询 */
+        @media (min-width: 980px){
+            .hidden {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 979px) {
+            .hidden2 {
+                display: none;
+            }
+            
+            .author-info {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .author-avatar {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block contents %}
+    <div class="page-container">
+        <!-- 左侧导航栏 -->
+        <div class="sidebar-menu toggle-others" style="background-color:rgba(0,0,0,0);">
+            <div class="sidebar-menu-inner sticky-top">
+                <div class="card modern-card">
+                    <div class="card-body">
+                        <!-- 卡片边缘缎带 -->
+                        <div class="ribbon ribbon-top ribbon-left bg-azure">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><rect x="4" y="4" width="6" height="6" rx="1" /><rect x="4" y="14" width="6" height="6" rx="1" /><rect x="14" y="14" width="6" height="6" rx="1" /><line x1="14" y1="7" x2="20" y2="7" /><line x1="17" y1="4" x2="17" y2="10" /></svg>
+                        </div>
+                        <!--目录展开图标-->
+                        <div class="float-right">
+                            <!--小屏幕下菜单展开图标-->
+                            <a href="#" class="hidden" data-toggle="mobile-menu">
+                                <span class="navbar-toggler-icon"></span>
+                            </a>
+                            <!--大屏幕下菜单展开图标-->
+                            <a href="#" class="hidden2" data-toggle="sidebar">
+                                <span class="navbar-toggler-icon"></span>
+                            </a>
+                        </div>
+                        <ul id="main-menu" class="main-menu modern-nav">
+                            <li>
+                                <a href="#作者信息" class="smooth modern-nav-item">
+                                    <i class="fas fa-user-shield modern-nav-icon"></i>
+                                    <span class="title">作者信息</span>
+                                </a>
+                            </li>
+                            {% for category in category_nav %}
+                                <li>
+                                    <a href="#{{category.name}}" class="smooth modern-nav-item">
+                                        <i class="{{category.icon}} modern-nav-icon"></i>
+                                        <span class="title">{{category.name}}</span>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                            <li>
+                                <a href="#数据统计" class="smooth modern-nav-item">
+                                    <i class="fas fa-chart-line modern-nav-icon"></i>
+                                    <span class="title">数据统计</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 右侧内容 -->
+        <div class="main-content">
+            <!-- 作者信息 -->
+            <h4 class="category-title modern-page-title" id="作者信息"><i class="fas fa-user-shield"></i>作者信息</h4>
+            <div class="author-card modern-card">
+                <div class="author-info">
+                    <div class="author-avatar">
+                        <img src="https://github.com/identicons/programer-afk.png" alt="Liu Wen">
+                    </div>
+                    <div class="author-details">
+                        <h3>Liu Wen (programer-afk)</h3>
+                        <p>江西九江大学的学生，渴望在GitHub上学习并为社区贡献自己的力量。</p>
+                        <div class="author-links">
+                            <a href="https://github.com/programer-afk" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="mailto:example@example.com" target="_blank">
+                                <i class="fas fa-envelope"></i> 联系我
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 分类内容 -->
+            {% for category in category_nav %}
+                <h4 class="category-title modern-page-title" id="{{category.name}}"><i class="{{category.icon}}"></i>{{category.name}}</h4>
+                <div class="row">
+                    {% for item in items %}
+                        {% if category.name == item.category.name %}
+                            <div class="col-sm-4 col-md-6 col-lg-4 mb-4">
+                                <div class="xe-widget xe-conversations box2 label-info modern-card" onclick="window.open('{{item.url}}', '_blank')" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{{item.url}}">
+                                    <div class="xe-comment-entry">
+                                        <a class="xe-user-img inverted">
+                                            <img data-src="{{item.img}}" class="lozad img-circle" width="{{item.img_width}}">
+                                        </a>
+                                        <div class="xe-comment">
+                                            <a href="#" class="xe-user-name overflowClip_1">
+                                                <strong>{{item.title}}</strong>
+                                            </a>
+                                            <p class="overflowClip_2">{{item.desc}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            
+            <!-- 数据统计 -->
+            <h4 class="stats-title modern-page-title" id="数据统计"><i class="fas fa-chart-line"></i>数据统计</h4>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card chart-container modern-card">
+                        <div class="card-body">
+                            <div id="categories_chart" style="height:400px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card chart-container modern-card">
+                        <div class="card-body">
+                            <div id="pie_chart" style="height:400px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="particles-js"></div>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'plugins/navigation/js/jquery-1.11.1.min.js' %}"></script>
+    <script src="{% static 'plugins/navigation/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'plugins/navigation/js/xenon-toggles.js' %}"></script>
+    <script src="{% static 'plugins/navigation/js/xenon-custom.js' %}"></script>
+    <script src="{% static 'plugins/navigation/js/lozad.js' %}"></script>
+    <script src="{% static 'js/echarts.min.js' %}"></script>
+    <script src="{% static 'plugins/particles/particles.js' %}"></script>
+    <script src="{% static 'plugins/particles/app.js' %}"></script>
+    
+    <script>
+    // 初始化延迟加载
+    const observer = lozad();
+    observer.observe();
+    
+    // 平滑滚动
+    $(document).ready(function() {
+        $("a.smooth").click(function(ev) {
+            ev.preventDefault();
+            public_vars.$mainMenu.add(public_vars.$sidebarProfile).toggleClass('mobile-is-visible');
+            ps_destroy();
+            $("html, body").animate({
+                scrollTop: $($(this).attr("href")).offset().top - 30
+            }, {
+                duration: 300,
+                easing: "swing"
+            });
+        });
+        
+        // 激活当前菜单项
+        $("a.smooth").click(function(e) {
+            $("#main-menu li").each(function() {
+                $(this).removeClass("active");
+            });
+            $(this).parent("li").addClass("active");
+            e.preventDefault();
+        });
+    });
+    
+    // 初始化图表
+    document.addEventListener('DOMContentLoaded', function() {
+        // 条形图
+        var categoriesChart = echarts.init(document.getElementById('categories_chart'));
+        var categoriesOption = {
+            title: {
+                text: '条目数量统计',
+                left: 'center',
+                textStyle: {
+                    fontWeight: 'normal',
+                    fontSize: 16
+                }
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: [{
+                type: 'category',
+                data: [{% for category in category_nav %}'{{category.name}}',{% endfor %}],
+                axisTick: {
+                    alignWithLabel: true
+                },
+                axisLabel: {
+                    rotate: -45,
+                    interval: 0
+                }
+            }],
+            yAxis: [{
+                type: 'value',
+                name: '数量',
+                nameTextStyle: {
+                    padding: [0, 0, 0, 30]
+                }
+            }],
+            series: [{
+                name: '条目数量',
+                type: 'bar',
+                barWidth: '60%',
+                data: [{% for category in category_nav %}{{category.get_items}},{% endfor %}],
+                itemStyle: {
+                    color: function(params) {
+                        var colorList = ['#4158D0', '#C850C0', '#FFCC70', '#46BFBD', '#FDB45C', '#F7464A', '#949FB1', '#4D5360'];
+                        return colorList[params.dataIndex % colorList.length];
+                    },
+                    borderRadius: [5, 5, 0, 0]
+                }
+            }]
+        };
+        categoriesChart.setOption(categoriesOption);
+        
+        // 饼图
+        var pieChart = echarts.init(document.getElementById('pie_chart'));
+        var pieOption = {
+            title: {
+                text: '分类统计',
+                left: 'center',
+                textStyle: {
+                    fontWeight: 'normal',
+                    fontSize: 16
+                }
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: '{a} <br/>{b}: {c} ({d}%)'
+            },
+            legend: {
+                orient: 'horizontal',
+                bottom: 'bottom',
+                data: [{% for category in category_nav %}'{{category.name}}',{% endfor %}]
+            },
+            series: [{
+                name: '分类数据',
+                type: 'pie',
+                radius: ['40%', '70%'],  // 设置为环形图
+                center: ['50%', '50%'],
+                avoidLabelOverlap: true,
+                itemStyle: {
+                    borderRadius: 8,
+                    borderColor: '#fff',
+                    borderWidth: 2
+                },
+                label: {
+                    show: false,
+                    position: 'center'
+                },
+                emphasis: {
+                    label: {
+                        show: true,
+                        fontSize: '18',
+                        fontWeight: 'bold'
+                    }
+                },
+                labelLine: {
+                    show: false
+                },
+                data: [
+                    {% for category in category_nav %}
+                    {
+                        value: {{category.get_items}},
+                        name: '{{category.name}}'
+                    },
+                    {% endfor %}
+                ]
+            }]
+        };
+        pieChart.setOption(pieOption);
+        
+        // 响应式调整
+        window.addEventListener('resize', function() {
+            categoriesChart.resize();
+            pieChart.resize();
+        });
+    });
+    </script>
+{% endblock %}
+

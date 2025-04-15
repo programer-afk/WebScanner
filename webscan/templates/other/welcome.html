@@ -1,0 +1,390 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>WebScanner</title>
+    <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon"/>
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon"/>
+    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet" />
+    <link href="{% static 'plugins/welcome/style.min.css' %}" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4158D0;
+            --secondary-color: #C850C0;
+            --accent-color: #FFCC70;
+            --text-color: #333;
+            --light-text: #fff;
+            --border-radius: 15px;
+            --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            --hover-transform: translateY(-5px);
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+        
+        /* 背景样式改进 */
+        .section-hero {
+            position: relative;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            overflow: hidden;
+            padding: 100px 0;
+        }
+        
+        .section-hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('{% static "img/pattern.svg" %}');
+            background-size: cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        /* 自定义图形效果 */
+        .shape {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+        
+        .shape span {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* 按钮样式 */
+        .btn-custom {
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: none;
+        }
+        
+        .btn-custom:hover {
+            transform: var(--hover-transform);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-primary-gradient {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-text);
+        }
+        
+        .btn-light {
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--primary-color);
+        }
+        
+        .btn-icon {
+            font-size: 1.2em;
+        }
+        
+        /* 导航栏 */
+        .navbar {
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .navbar-brand img {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+        }
+        
+        .navbar-brand h4 {
+            margin: 0;
+            font-weight: 700;
+            color: var(--light-text);
+            letter-spacing: 1px;
+        }
+        
+        /* 标题样式 */
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 60px 0;
+        }
+        
+        .main-title {
+            font-size: 3.8rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: var(--light-text);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            letter-spacing: -1px;
+        }
+        
+        .sub-title {
+            font-size: 1.6rem;
+            font-weight: 400;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        /* 卡片区样式 */
+        .features-section {
+            position: relative;
+            margin-top: -100px;
+            padding-bottom: 80px;
+            z-index: 2;
+        }
+        
+        .feature-card {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: all 0.4s ease;
+            background: #fff;
+            height: 100%;
+            border: none;
+        }
+        
+        .feature-card:hover {
+            transform: var(--hover-transform);
+            box-shadow: var(--card-shadow);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 2.2rem;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+        
+        .icon-primary {
+            background: linear-gradient(45deg, #2193b0, #6dd5ed);
+        }
+        
+        .icon-success {
+            background: linear-gradient(45deg, #11998e, #38ef7d);
+        }
+        
+        .icon-warning {
+            background: linear-gradient(45deg, #f46b45, #eea849);
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        
+        .feature-description {
+            color: #6c757d;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        /* 页脚样式 */
+        .footer {
+            background-color: #f8f9fa;
+            padding: 40px 0;
+            color: #6c757d;
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+        }
+        
+        .footer a {
+            color: var(--primary-color);
+            transition: color 0.3s ease;
+        }
+        
+        .footer a:hover {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 992px) {
+            .main-title {
+                font-size: 3rem;
+            }
+            
+            .features-section {
+                margin-top: -50px;
+            }
+            
+            .feature-card {
+                margin-bottom: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+            
+            .sub-title {
+                font-size: 1.2rem;
+            }
+            
+            .section-hero {
+                padding: 50px 0;
+            }
+            
+            .hero-content {
+                padding: 30px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!--标题栏-->
+    <header class="header-global">
+        <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img alt="WebScanner" src="{% static '/img/favicon.ico' %}"/>
+                    <h4>WebScanner</h4>
+                </a>
+                <div class="navbar-collapse collapse" id="navbar_global">
+                    <ul class="navbar-nav navbar-nav-hover align-items-lg-center ml-lg-auto">
+                        <li class="nav-item d-none d-lg-block ml-lg-4">
+                            <a href="{% url 'login' %}" class="btn btn-custom btn-light">
+                                <i class="fas fa-user-circle btn-icon"></i>
+                                <span>登录</span>
+                            </a>
+                        </li>
+                        <li class="nav-item d-none d-lg-block ml-lg-4">
+                            <a href="{% url 'index' %}" class="btn btn-custom btn-primary-gradient">
+                                <i class="fas fa-running btn-icon"></i>
+                                <span>开始使用</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!--主标题区域-->
+        <section class="section-hero">
+            <div class="shape">
+                <span class="span-150" style="top: 10%; left: 5%;"></span>
+                <span class="span-50" style="top: 20%; right: 10%;"></span>
+                <span class="span-75" style="bottom: 15%; left: 15%;"></span>
+                <span class="span-100" style="bottom: 30%; right: 15%;"></span>
+                <span class="span-50" style="top: 40%; left: 50%;"></span>
+            </div>
+            
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 text-center hero-content">
+                        <h1 class="main-title">Web安全扫描工具</h1>
+                        <h3 class="sub-title">简单高效的Web漏洞自动化扫描工具</h3>
+                        <div class="btn-wrapper">
+                            <a href="{% url 'index' %}" class="btn btn-custom btn-primary-gradient">
+                                <i class="fas fa-play btn-icon"></i>
+                                <span>立即开始</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--核心功能卡片-->
+        <section class="features-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card feature-card shadow">
+                            <div class="card-body py-5 text-center">
+                                <div class="feature-icon icon-primary">
+                                    <i class="fas fa-user-shield"></i>
+                                </div>
+                                <h5 class="feature-title text-primary">安全高效</h5>
+                                <p class="feature-description">全站HTTPS加密，账号HASH加密，保护您的身份信息。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="card feature-card shadow">
+                            <div class="card-body py-5 text-center">
+                                <div class="feature-icon icon-success">
+                                    <i class="fa fa-fighter-jet"></i>
+                                </div>
+                                <h5 class="feature-title text-success">快速稳定</h5>
+                                <p class="feature-description">全自动负载均衡，多节点极速体验。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="card feature-card shadow">
+                            <div class="card-body py-5 text-center">
+                                <div class="feature-icon icon-warning">
+                                    <i class="fa fa-puzzle-piece"></i>
+                                </div>
+                                <h5 class="feature-title text-warning">完美适配</h5>
+                                <p class="feature-description">响应式布局，适配手机、平板、电脑。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--页脚-->
+        <footer class="footer">
+            <div class="container">
+                <div class="row align-items-center justify-content-md-between">
+                    <div class="col-md-6">
+                        <ul class="nav nav-footer justify-content-end">
+                            <li class="nav-item">
+                                <a href="{% url 'about' %}" class="nav-link" target="_blank">关于我们</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/programer-afk/WebScanner" class="nav-link" target="_blank">源码</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+</body>
+</html>
