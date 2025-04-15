@@ -1,43 +1,21 @@
-# Python
+# 忽略 Python 虚拟环境
+.venv/
+env/
+venv/
+
+# 忽略 Python 缓存文件
 __pycache__/
 *.py[cod]
-*$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
 
-# Django
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
-media/
+# 忽略 Word、PDF 等文档
+*.docx
+*.doc
+*.pdf
 
-# Virtual Environment
-venv/
-ENV/
-env/
-
-# IDE
-.idea/
+# 忽略 VSCode 设置（可选）
 .vscode/
-*.swp
-*.swo
 
-# OS
+
+# 忽略系统文件（macOS/Windows）
 .DS_Store
-Thumbs.db 
+Thumbs.db
