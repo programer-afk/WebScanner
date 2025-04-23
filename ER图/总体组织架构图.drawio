@@ -44,7 +44,7 @@
           <mxGeometry x="340" y="15" width="120" height="50" as="geometry" />
         </mxCell>
         <mxCell id="pPMCe3-cTSx6Zwr6l8Ok-29" value="数据处理服务" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="pPMCe3-cTSx6Zwr6l8Ok-14">
-          <mxGeometry x="185" y="60" width="120" height="50" as="geometry" />
+          <mxGeometry x="180" y="60" width="120" height="50" as="geometry" />
         </mxCell>
         <mxCell id="pPMCe3-cTSx6Zwr6l8Ok-26" value="数据层" style="swimlane;startSize=20;horizontal=0;html=1;" vertex="1" parent="pPMCe3-cTSx6Zwr6l8Ok-11">
           <mxGeometry y="380" width="480" height="120" as="geometry" />
